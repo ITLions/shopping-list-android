@@ -5,16 +5,16 @@ import android.database.sqlite.SQLiteDatabase
 import org.jetbrains.anko.db.ManagedSQLiteOpenHelper
 
 /**
- * TODO change name after importin external database
+ * TODO implement javadoc
  */
-class SQLManager(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "temp_name", null, 1) {
+class SLDatabase(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "temp_name", null, 1) {
 
     companion object {
-        private var instance: SQLManager? = null
+        private var instance: SLDatabase? = null
 
-        fun getInstance(ctx: Context): SQLManager {
+        fun getInstance(ctx: Context): SLDatabase {
             if (instance == null) {
-                instance = SQLManager(ctx.getApplicationContext())
+                instance = SLDatabase(ctx.getApplicationContext())
             }
             return instance!!
         }
@@ -27,8 +27,8 @@ class SQLManager(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "temp_name", null,
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         // Here you can upgrade tables, as usual
     }
-}
 
-// Access property for Context
-val Context.database: SQLManager
-    get() = SQLManager.getInstance(getApplicationContext())
+    // Access property for Context
+    val Context.database: SLDatabase
+        get() = SLDatabase.getInstance(getApplicationContext())
+}

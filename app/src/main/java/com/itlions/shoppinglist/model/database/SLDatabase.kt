@@ -1,4 +1,4 @@
-package com.itlions.shoppinglist.model
+package com.itlions.shoppinglist.model.database
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

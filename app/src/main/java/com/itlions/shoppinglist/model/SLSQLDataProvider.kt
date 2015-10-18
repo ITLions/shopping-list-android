@@ -1,6 +1,7 @@
 package com.itlions.shoppinglist.model
 
 import android.content.Context
+import com.itlions.shoppinglist.model.database.database
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
 

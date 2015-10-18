@@ -10,11 +10,18 @@ import org.jetbrains.anko.db.ManagedSQLiteOpenHelper
 class SLDatabase(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "temp_name", null, 1) {
 
     companion object {
+        val TABLE_PRODUCT_LIST = "product_list"
+        val TABLE_CATEGORY = "category"
+        val TABLE_UNIT = "unit"
+        val TABLE_LIST_ITEM = "list_item"
+        val TABLE_PRODUCT = "product"
+
+
         private var instance: SLDatabase? = null
 
         fun getInstance(ctx: Context): SLDatabase {
             if (instance == null) {
-                instance = SLDatabase(ctx.getApplicationContext())
+                instance = SLDatabase(ctx.applicationContext)
             }
             return instance!!
         }
@@ -31,4 +38,4 @@ class SLDatabase(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "temp_name", null,
 
 // Access property for Context
 val Context.database: SLDatabase
-    get() = SLDatabase.getInstance(getApplicationContext())
+    get() = SLDatabase.getInstance(applicationContext)

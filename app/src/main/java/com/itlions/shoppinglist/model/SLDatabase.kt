@@ -27,8 +27,8 @@ class SLDatabase(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "temp_name", null,
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         // Here you can upgrade tables, as usual
     }
-
-    // Access property for Context
-    val Context.database: SLDatabase
-        get() = SLDatabase.getInstance(getApplicationContext())
 }
+
+// Access property for Context
+val Context.database: SLDatabase
+    get() = SLDatabase.getInstance(getApplicationContext())

@@ -6,6 +6,6 @@ package com.itlions.shoppinglist.model
 interface SLDataProvider {
     fun getProductListForCategories(id : Int) : List<Product>
     fun getCategories() : List<Category>
-    fun getProductLists() : List<ProductList>
+    fun getProductLists() : List<ProductList>?
     fun saveProductList(list : ProductList)
 }

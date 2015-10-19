@@ -7,17 +7,14 @@ import org.jetbrains.anko.db.ManagedSQLiteOpenHelper
 /**
  * TODO implement javadoc
  */
-class SLDatabase(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "temp_name", null, 1) {
+class SLDatabase(ctx: Context, dbName: String) : ManagedSQLiteOpenHelper(ctx, dbName, null, 1) {
 
     companion object {
 
-        private var instance: SLDatabase? = null
+        var instance: SLDatabase? = null
 
-        fun getInstance(ctx: Context): SLDatabase {
-            if (instance == null) {
-                instance = SLDatabase(ctx.applicationContext)
-            }
-            return instance!!
+        fun import(ctx: Context, dbName: String) {
+            instance = SLDatabase(ctx, dbName);
         }
     }
 
@@ -32,4 +29,4 @@ class SLDatabase(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "temp_name", null,
 
 // Access property for Context
 val Context.database: SLDatabase
-    get() = SLDatabase.getInstance(applicationContext)
+    get() = SLDatabase.instance!!

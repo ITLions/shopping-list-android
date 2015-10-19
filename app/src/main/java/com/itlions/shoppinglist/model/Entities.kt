@@ -1,6 +1,7 @@
 package com.itlions.shoppinglist.model
 
-import java.sql.Date
+import java.util.*
+
 
 /**
  * TODO implement javadoc

@@ -14,4 +14,10 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+    <style name="ListTitleTextView" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:padding">@dimen/dimen_medium</item>
+        <item name="android:layout_margin">@dimen/dimen_medium</item>
+    </style>
+
+
 </resources>

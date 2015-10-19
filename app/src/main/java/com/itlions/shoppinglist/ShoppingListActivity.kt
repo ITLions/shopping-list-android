@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.Menu
 import android.view.MenuItem
+import com.itlions.shoppinglist.navigation.Navigator
+import com.itlions.shoppinglist.views.ShoppingListViewImpl
 
 class ShoppingListActivity : AppCompatActivity() {
 
@@ -24,6 +26,7 @@ class ShoppingListActivity : AppCompatActivity() {
             }
         })
 
+        Navigator.showFragment(this, ShoppingListViewImpl())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

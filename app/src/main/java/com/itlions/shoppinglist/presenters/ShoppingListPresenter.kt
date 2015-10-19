@@ -10,27 +10,22 @@ import com.itlions.shoppinglist.views.ShoppingListView
  */
 
 interface ShoppingListPresenter : BasePresenter {
-    fun setView(view: ShoppingListView)
-    fun onItemClicked(item : ProductList)
-    fun onItemChecked(item : ProductList, isChecked : Boolean)
+    fun onItemClicked(item: ProductList)
+    fun onItemChecked(item: ProductList, isChecked: Boolean)
     fun onItemAdd(item: ProductList)
 }
 
-class ShoppingListPresenterImpl : ShoppingListPresenter {
+class ShoppingListPresenterImpl(val view: ShoppingListView) : ShoppingListPresenter {
 
-    var baseView: ShoppingListView? = null;
-    var model: ShoppingListModel? = null;
-    var shoppingLists: List<ProductList>? = null;
-
-    override fun setView(view: ShoppingListView) {
-        baseView = view;
-        create()
+    val model: ShoppingListModel by lazy {
+        ShoppingListModelImpl()
+    }
+    val shoppingLists: List<ProductList>? by lazy {
+        model.getShoppingList();
     }
 
-    override fun create() {
-        model = ShoppingListModelImpl()
-        shoppingLists = model!!.getShoppingList()
-        baseView!!.setShoppingList(shoppingLists as List<ProductList>)
+    override fun loadData() {
+        view.setShoppingList(shoppingLists ?: null)
     }
 
     override fun onItemClicked(item: ProductList) {

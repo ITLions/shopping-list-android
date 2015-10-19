@@ -1,7 +1,6 @@
 package com.itlions.shoppinglist.views
 
 import android.os.Bundle
-import android.view.ContextMenu
 import android.view.View
 import android.widget.ListView
 import com.itlions.shoppinglist.R
@@ -16,37 +15,30 @@ import kotlin.properties.Delegates
  */
 
 interface ShoppingListView {
-    fun setShoppingList(list: List<ProductList>)
+    fun setShoppingList(list: List<ProductList>?)
     fun updateList()
 }
 
-class ShoppingListViewImpl : BaseFragment(), ShoppingListView {
+class ShoppingListViewImpl : BaseFragment<ShoppingListPresenterImpl>(), ShoppingListView {
 
-    var shoppingList: ListView  by Delegates.notNull<ListView>();
+    var shoppingList: ListView by Delegates.notNull<ListView>();
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_shoping_list;
     }
 
-    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
-        super.onCreateContextMenu(menu, v, menuInfo)
-    }
-
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        presenter.loadData()
     }
 
-    override fun setShoppingList(list: List<ProductList>) {
-        var adapter = ShoppingLisAdapter(getActivity());
+    override fun setShoppingList(list: List<ProductList>?) {
+        var adapter = ShoppingLisAdapter(activity);
         adapter.setData(list)
-        shoppingList!!.setAdapter(adapter)
+        shoppingList.adapter = adapter
     }
 
-    override fun initPresenter() {
-        val shoppingListPresenter = ShoppingListPresenterImpl()
-        shoppingListPresenter.setView(this)
-    }
+    override fun initPresenter() = ShoppingListPresenterImpl(this)
 
     override fun initView() {
         shoppingList = view?.findViewById(R.id.shopping_list) as ListView;

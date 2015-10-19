@@ -62,7 +62,7 @@ class ShoppingLisAdapter(private val context: Context) : BaseAdapter() {
         return convertView
     }
 
-    fun setData(productList: List<ProductList>) {
+    fun setData(productList: List<ProductList>?) {
         itemsList = productList;
     }
 

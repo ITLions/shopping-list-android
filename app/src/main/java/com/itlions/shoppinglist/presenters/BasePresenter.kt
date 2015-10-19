@@ -5,5 +5,5 @@ package com.itlions.shoppinglist.presenters
  */
 
 interface BasePresenter {
-    fun create()
+    fun loadData()
 }

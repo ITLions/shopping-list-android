@@ -9,24 +9,21 @@ import android.view.View
 import android.view.Menu
 import android.view.MenuItem
 import com.itlions.shoppinglist.navigation.Navigator
-import com.itlions.shoppinglist.views.ShoppingListViewImpl
+import com.itlions.shoppinglist.views.ShoppingListFragment
+import kotlin.properties.Delegates
 
 class ShoppingListActivity : AppCompatActivity() {
+
+    val fab : FloatingActionButton by lazy {
+        findViewById(R.id.fab) as FloatingActionButton
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shopping_list)
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
-
-        val fab = findViewById(R.id.fab) as FloatingActionButton
-        fab.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show()
-            }
-        })
-
-        Navigator.showFragment(this, ShoppingListViewImpl())
+        Navigator.showFragment(this, ShoppingListFragment())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

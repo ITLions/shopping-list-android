@@ -1,12 +1,12 @@
 package com.itlions.shoppinglist.views
 
-import android.os.Bundle
-import android.view.View
 import android.widget.ListView
 import com.itlions.shoppinglist.R
+import com.itlions.shoppinglist.ShoppingListActivity
 import com.itlions.shoppinglist.adapter.ShoppingLisAdapter
 import com.itlions.shoppinglist.fragment.base.BaseFragment
 import com.itlions.shoppinglist.model.ProductList
+import com.itlions.shoppinglist.navigation.Navigator
 import com.itlions.shoppinglist.presenters.ShoppingListPresenterImpl
 import kotlin.properties.Delegates
 
@@ -19,17 +19,15 @@ interface ShoppingListView {
     fun updateList()
 }
 
-class ShoppingListViewImpl : BaseFragment<ShoppingListPresenterImpl>(), ShoppingListView {
-
-    var shoppingList: ListView by Delegates.notNull<ListView>();
-
-    override fun getLayoutId(): Int {
-        return R.layout.fragment_shoping_list;
+class ShoppingListFragment : BaseFragment<ShoppingListPresenterImpl>(), ShoppingListView {
+    override fun afterViewInited() {
+        presenter.loadShoppingLists()
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        presenter.loadData()
+    var shoppingList: ListView by Delegates.notNull<ListView>()
+
+    override fun getLayoutId(): Int {
+        return R.layout.content_shoping_list;
     }
 
     override fun setShoppingList(list: List<ProductList>?) {
@@ -42,6 +40,9 @@ class ShoppingListViewImpl : BaseFragment<ShoppingListPresenterImpl>(), Shopping
 
     override fun initView() {
         shoppingList = view?.findViewById(R.id.shopping_list) as ListView;
+        (activity as ShoppingListActivity).fab.setOnClickListener {
+            Navigator.showAddListScreen(activity)
+        }
     }
 
     override fun updateList() {

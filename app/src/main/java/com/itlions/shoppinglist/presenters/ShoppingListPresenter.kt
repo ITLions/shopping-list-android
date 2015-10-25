@@ -24,7 +24,7 @@ class ShoppingListPresenterImpl(val view: ShoppingListView) : ShoppingListPresen
         model.getShoppingList();
     }
 
-    override fun loadData() {
+    fun loadShoppingLists() {
         view.setShoppingList(shoppingLists ?: null)
     }
 

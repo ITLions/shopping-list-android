@@ -24,6 +24,7 @@ abstract class BaseFragment<T : BasePresenter>() : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         initView()
+        afterViewInited()
     }
 
     abstract fun getLayoutId() : Int
@@ -31,4 +32,6 @@ abstract class BaseFragment<T : BasePresenter>() : Fragment() {
     abstract fun initPresenter() : T
 
     abstract fun initView()
+
+    abstract fun afterViewInited()
 }

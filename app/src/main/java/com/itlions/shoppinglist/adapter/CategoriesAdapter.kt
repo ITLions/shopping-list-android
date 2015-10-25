@@ -2,40 +2,38 @@ package com.itlions.shoppinglist.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.itlions.shoppinglist.R
-import com.itlions.shoppinglist.model.Product
+import com.itlions.shoppinglist.model.Category
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.layoutInflater
 
 /**
  * TODO implement javadoc
  */
-class AddedProductAdapter(val context : Context) : RecyclerView.Adapter<AddedProductAdapter.VH>() {
+class CategoriesAdapter(val context : Context) : RecyclerView.Adapter<CategoriesAdapter.VH>(){
+    var categories : List<Category>? = null
+    val layoutInflater = context.layoutInflater
 
-    var products : List<Product>? = null
-    val layoutInflater : LayoutInflater = context.layoutInflater
-
-    override fun getItemCount(): Int = products?.size ?: 0
-
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): VH? {
-        val view = layoutInflater.inflate(R.layout.item_main, parent, false)
-        return VH(view)
+    fun initWithCategories(list : List<Category>) {
+        categories = list
+        notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: VH?, position: Int) {
-        val product = products?.get(position)
+        val product = categories?.get(position)
 //        Picasso.with(context).load(product?.icon).into(holder?.background)
         holder?.title?.text = product?.name
     }
 
-    fun initWithItem(products : List<Product>) {
-        this.products = products;
+    override fun getItemCount(): Int = categories?.size ?: 0
+
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): VH? {
+        val view = layoutInflater.inflate(R.layout.item_main, parent, false)
+        return VH(view)
     }
 
     inner class VH(val v : View) : RecyclerView.ViewHolder(v) {

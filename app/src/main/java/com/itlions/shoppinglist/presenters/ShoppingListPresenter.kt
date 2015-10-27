@@ -3,6 +3,7 @@ package com.itlions.shoppinglist.presenters
 import com.itlions.shoppinglist.model.ProductList
 import com.itlions.shoppinglist.models.ShoppingListModel
 import com.itlions.shoppinglist.models.ShoppingListModelImpl
+import com.itlions.shoppinglist.presenters.base.BasePresenter
 import com.itlions.shoppinglist.views.ShoppingListView
 
 /**

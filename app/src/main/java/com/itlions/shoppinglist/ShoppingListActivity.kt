@@ -23,7 +23,10 @@ class ShoppingListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_shopping_list)
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
-        Navigator.showFragment(this, ShoppingListFragment())
+        fab.setOnClickListener {
+            Navigator.showAddListScreen(this)
+        }
+        Navigator.showShoppingListFragment(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

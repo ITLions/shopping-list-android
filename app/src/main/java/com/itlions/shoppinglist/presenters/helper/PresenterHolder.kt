@@ -1,5 +1,6 @@
-package com.itlions.shoppinglist.presenters
+package com.itlions.shoppinglist.presenters.helper
 
+import com.itlions.shoppinglist.presenters.base.BasePresenter
 import java.util.*
 import kotlin.properties.Delegates
 

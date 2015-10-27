@@ -40,9 +40,6 @@ class ShoppingListFragment : BaseFragment<ShoppingListPresenterImpl>(), Shopping
 
     override fun initView() {
         shoppingList = view?.findViewById(R.id.shopping_list) as ListView;
-        (activity as ShoppingListActivity).fab.setOnClickListener {
-            Navigator.showAddListScreen(activity)
-        }
     }
 
     override fun updateList() {

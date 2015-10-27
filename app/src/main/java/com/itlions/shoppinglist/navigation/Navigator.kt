@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import com.itlions.shoppinglist.CreateNewListActivity
 import com.itlions.shoppinglist.R
+import com.itlions.shoppinglist.views.ShoppingListFragment
 
 /**
  * Created by omazhukin on 10/19/2015.
@@ -25,6 +26,10 @@ public object Navigator {
         ft.replace(R.id.content, fragment)
         if(addToStack) ft.addToBackStack(null)
         ft.commit()
+    }
+
+    fun showShoppingListFragment(activity: AppCompatActivity) {
+        showFragment(activity, ShoppingListFragment(), false)
     }
 
     fun showAddListScreen(context: Context) {

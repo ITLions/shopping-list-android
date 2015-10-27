@@ -13,16 +13,17 @@ import kotlin.properties.Delegates
 /**
  * TODO implement javadoc
  */
-interface SelectItemsView {
-    fun showSelectedItems(list : List<Product>)
+interface SelectedtemsView {
+    fun showSelectedItems(list: MutableList<Product>)
+    fun addProduct(p: Product)
 }
 
-class SelectedItemsFragment : BaseFragment<SelectItemsPresenter>(), SelectItemsView {
-    var mAddedProductsList : RecyclerView by Delegates.notNull<RecyclerView>()
+class SelectedItemsFragment : BaseFragment<SelectItemsPresenter>(), SelectedtemsView {
+
+    var mAddedProductsList: RecyclerView by Delegates.notNull<RecyclerView>()
     val mAdapter by lazy {
         AddedProductAdapter(activity)
     }
-
 
     override fun getLayoutId() = R.layout.content_selected_products_list
 
@@ -38,8 +39,11 @@ class SelectedItemsFragment : BaseFragment<SelectItemsPresenter>(), SelectItemsV
         presenter.loadProductList()
     }
 
-    override fun showSelectedItems(list: List<Product>) {
+    override fun showSelectedItems(list: MutableList<Product>) {
         mAdapter.initWithItem(list)
     }
 
+    override fun addProduct(p: Product) {
+        mAdapter.addProduct(p)
+    }
 }

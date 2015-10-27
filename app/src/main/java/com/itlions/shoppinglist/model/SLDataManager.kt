@@ -36,7 +36,7 @@ class SLDataManager {
             return listOf(unit1, unit2)
         }
 
-        fun getProducts(): List<Product> {
+        fun getProducts(): MutableList<Product> {
             var categories = getCategories()
             var units = getUnits()
             var p1 = Product(1, "meat", "test descr",
@@ -67,7 +67,7 @@ class SLDataManager {
             var p8 = Product(1, "cheese", "test descr",
                     "http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/glossy-black-icons-food-beverage/056941-glossy-black-icon-food-beverage-knife-fork2.png",
                     categories.get(0), units.get(0));
-            return listOf(p1, p2, p3, p4, p5, p6, p66, p7, p8)
+            return arrayListOf (p1, p2, p3, p4, p5, p6, p66, p7, p8)
         }
     }
 }

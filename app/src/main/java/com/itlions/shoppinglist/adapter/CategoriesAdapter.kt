@@ -10,13 +10,15 @@ import com.itlions.shoppinglist.R
 import com.itlions.shoppinglist.model.Category
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.layoutInflater
+import kotlin.properties.Delegates
 
 /**
  * TODO implement javadoc
  */
 class CategoriesAdapter(val context : Context) : RecyclerView.Adapter<CategoriesAdapter.VH>(){
-    var categories : List<Category>? = null
     val layoutInflater = context.layoutInflater
+    var categories : List<Category>? = null
+    var listener : ((View, Category) -> Unit)? = null
 
     fun initWithCategories(list : List<Category>) {
         categories = list
@@ -27,6 +29,13 @@ class CategoriesAdapter(val context : Context) : RecyclerView.Adapter<Categories
         val product = categories?.get(position)
 //        Picasso.with(context).load(product?.icon).into(holder?.background)
         holder?.title?.text = product?.name
+        holder?.itemView?.setOnClickListener {
+            listener?.invoke(holder?.itemView, product!!)
+        }
+    }
+
+    fun setOnClickListener(listener : (View, Category) -> Unit) {
+        this.listener = listener
     }
 
     override fun getItemCount(): Int = categories?.size ?: 0

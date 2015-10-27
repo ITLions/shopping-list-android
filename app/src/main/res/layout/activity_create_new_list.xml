@@ -1,18 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:showDividers="middle"
               android:divider="@android:color/black"
               android:layout_height="match_parent">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_added_products"
+    <fragment
         android:layout_width="match_parent"
         android:layout_height="124dp"
-        />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_categories"
+        class="com.itlions.shoppinglist.views.SelectedItemsFragment"
+        android:id="@+id/fragment_added_products"/>
+    <FrameLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent" />
 </LinearLayout>

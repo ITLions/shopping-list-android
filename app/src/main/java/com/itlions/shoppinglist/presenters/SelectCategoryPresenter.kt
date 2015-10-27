@@ -1,12 +1,12 @@
 package com.itlions.shoppinglist.presenters
 
 import com.itlions.shoppinglist.model.SLDataManager
-import com.itlions.shoppinglist.views.AddListView
+import com.itlions.shoppinglist.views.SelectCategoryView
 
 /**
  * TODO implement javadoc
  */
-class AddListPresenter(val view : AddListView) : BasePresenter {
+class SelectCategoryPresenter(val view : SelectCategoryView) : BasePresenter {
     val categories by lazy {
         SLDataManager.getCategories()
     }

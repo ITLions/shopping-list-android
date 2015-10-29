@@ -1,8 +1,10 @@
 package com.itlions.shoppinglist.views
 
+import android.support.v7.app.AppCompatActivity
 import android.widget.ListView
 import com.itlions.shoppinglist.R
 import com.itlions.shoppinglist.ShoppingListActivity
+import com.itlions.shoppinglist.adapter.ProductAdapter
 import com.itlions.shoppinglist.adapter.ShoppingLisAdapter
 import com.itlions.shoppinglist.fragment.base.BaseFragment
 import com.itlions.shoppinglist.model.ProductList
@@ -20,6 +22,11 @@ interface ShoppingListView {
 }
 
 class ShoppingListFragment : BaseFragment<ShoppingListPresenterImpl>(), ShoppingListView {
+
+    val mAdapter by lazy {
+        ShoppingLisAdapter(activity)
+    }
+
     override fun afterViewInited() {
         presenter.loadShoppingLists()
     }
@@ -31,15 +38,15 @@ class ShoppingListFragment : BaseFragment<ShoppingListPresenterImpl>(), Shopping
     }
 
     override fun setShoppingList(list: List<ProductList>?) {
-        var adapter = ShoppingLisAdapter(activity);
-        adapter.setData(list)
-        shoppingList.adapter = adapter
+        mAdapter.setData(list)
     }
 
     override fun initPresenter() = ShoppingListPresenterImpl(this)
 
     override fun initView() {
-        shoppingList = view?.findViewById(R.id.shopping_list) as ListView;
+        shoppingList = view?.findViewById(R.id.shopping_list) as ListView
+        shoppingList.adapter = mAdapter
+        mAdapter.setOnClickListener { view, productList -> Navigator.showProductListFragment(activity as AppCompatActivity, productList) }
     }
 
     override fun updateList() {

@@ -14,7 +14,7 @@ import org.jetbrains.anko.layoutInflater
 /**
  * Created by omazhukin on 10/27/2015.
  */
-class ProductAdapter(val context : Context) : RecyclerView.Adapter<ProductAdapter.VH>(){
+class CategoryAdapterAdapter(val context : Context) : RecyclerView.Adapter<CategoryAdapterAdapter.VH>(){
     val layoutInflater = context.layoutInflater
     var categories : List<Product>? = null
     var listener : ((View, Product) -> Unit)? = null

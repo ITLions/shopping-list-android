@@ -8,6 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.CheckBox
 import android.widget.TextView
 import com.itlions.shoppinglist.R
+import com.itlions.shoppinglist.model.Category
 import com.itlions.shoppinglist.model.ProductList
 
 /**
@@ -18,6 +19,7 @@ class ShoppingLisAdapter(private val context: Context) : BaseAdapter() {
 
     private var itemsList: List<ProductList>? = null
     private val lInflater: LayoutInflater
+    var listener : ((View, ProductList) -> Unit)? = null
 
     init {
         lInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -25,6 +27,10 @@ class ShoppingLisAdapter(private val context: Context) : BaseAdapter() {
 
     override fun getCount(): Int {
         return if (itemsList == null) 0 else itemsList!!.size()
+    }
+
+    fun setOnClickListener(listener : (View, ProductList) -> Unit) {
+        this.listener = listener
     }
 
     override fun getItem(position: Int): ProductList {
@@ -59,11 +65,16 @@ class ShoppingLisAdapter(private val context: Context) : BaseAdapter() {
         viewHolder.title?.text = productList.name
         //viewHolder.checkBox.setChecked(productList.getChecked());
 
+        convertView?.setOnClickListener {
+            listener?.invoke(convertView as View, productList!!)
+        }
+
         return convertView
     }
 
     fun setData(productList: List<ProductList>?) {
         itemsList = productList;
+        notifyDataSetChanged()
     }
 
     internal inner class ViewHolder {

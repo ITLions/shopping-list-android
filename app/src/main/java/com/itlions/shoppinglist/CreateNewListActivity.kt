@@ -35,6 +35,6 @@ class CreateNewListActivity : AppCompatActivity(), ProductAddedListener {
     }
 
     fun goInsideCategory() {
-        Navigator.showFragment(this, CategoryProductsFragment(), true)
+        Navigator.showCategoryProductsFragment(this)
     }
 }

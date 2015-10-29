@@ -26,7 +26,7 @@ class DialogHelper {
         var inflater = (c as Activity).layoutInflater;
         var view = inflater?.inflate(R.layout.dialog_add_product, null)
         var spinner = view?.findViewById(R.id.spinner) as Spinner
-        var unitsValue = view?.findViewById(R.id.editText)
+        var unitsValue = view?.findViewById(R.id.product_count_value)
         var adapter = ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, units)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 

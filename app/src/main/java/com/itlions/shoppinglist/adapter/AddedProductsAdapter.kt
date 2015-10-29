@@ -18,7 +18,7 @@ import org.jetbrains.anko.layoutInflater
 /**
  * TODO implement javadoc
  */
-class AddedProductAdapter(val context: Context) : RecyclerView.Adapter<AddedProductAdapter.VH>() {
+class ProductAdapter(val context: Context) : RecyclerView.Adapter<ProductAdapter.VH>() {
 
     var products: MutableList<Product>? = null
     val layoutInflater: LayoutInflater = context.layoutInflater
@@ -36,7 +36,7 @@ class AddedProductAdapter(val context: Context) : RecyclerView.Adapter<AddedProd
         holder?.title?.text = product?.name
     }
 
-    fun initWithItem(products: MutableList<Product>) {
+    fun initWithProducts(products: MutableList<Product>) {
         this.products = products;
     }
 

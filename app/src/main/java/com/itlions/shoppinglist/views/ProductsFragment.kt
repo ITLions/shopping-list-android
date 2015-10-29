@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 import com.itlions.shoppinglist.CreateNewListActivity
 import com.itlions.shoppinglist.R
 import com.itlions.shoppinglist.adapter.CategoriesAdapter
-import com.itlions.shoppinglist.adapter.ProductAdapter
+import com.itlions.shoppinglist.adapter.CategoryAdapterAdapter
 import com.itlions.shoppinglist.fragment.base.BaseFragment
 import com.itlions.shoppinglist.listener.ProductAddedListener
 import com.itlions.shoppinglist.model.Category
@@ -29,11 +29,11 @@ class CategoryProductsFragment : BaseFragment<ProductPresenter>(), CategoryProdu
     val SPAN_COUNT: Int = 3
     var mCategoriesView: RecyclerView by Delegates.notNull<RecyclerView>()
     val mAdapter by lazy {
-        ProductAdapter(activity)
+        CategoryAdapterAdapter(activity)
     }
 
     override fun showProducts(list: List<Product>) {
-        (mCategoriesView.adapter as ProductAdapter).initWithProduct(list)
+        (mCategoriesView.adapter as CategoryAdapterAdapter).initWithProduct(list)
     }
 
     override fun afterViewInited() {

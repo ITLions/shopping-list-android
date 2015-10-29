@@ -3,7 +3,8 @@ package com.itlions.shoppinglist.views
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.itlions.shoppinglist.R
-import com.itlions.shoppinglist.adapter.AddedProductAdapter
+import com.itlions.shoppinglist.adapter.CategoryAdapterAdapter
+import com.itlions.shoppinglist.adapter.ProductAdapter
 import com.itlions.shoppinglist.fragment.base.BaseFragment
 import com.itlions.shoppinglist.model.Product
 import com.itlions.shoppinglist.model.SLDataManager
@@ -22,7 +23,7 @@ class SelectedItemsFragment : BaseFragment<SelectItemsPresenter>(), Selectedtems
 
     var mAddedProductsList: RecyclerView by Delegates.notNull<RecyclerView>()
     val mAdapter by lazy {
-        AddedProductAdapter(activity)
+        ProductAdapter(activity)
     }
 
     override fun getLayoutId() = R.layout.content_selected_products_list
@@ -40,7 +41,7 @@ class SelectedItemsFragment : BaseFragment<SelectItemsPresenter>(), Selectedtems
     }
 
     override fun showSelectedItems(list: MutableList<Product>) {
-        mAdapter.initWithItem(list)
+        mAdapter.initWithProducts(list)
     }
 
     override fun addProduct(p: Product) {

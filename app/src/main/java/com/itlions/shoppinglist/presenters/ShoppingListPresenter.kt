@@ -1,14 +1,10 @@
 package com.itlions.shoppinglist.presenters
 
+import com.itlions.shoppinglist.interactor.ShoppingListInteractor
+import com.itlions.shoppinglist.interactor.ShoppingListInteractorImpl
 import com.itlions.shoppinglist.model.ProductList
-import com.itlions.shoppinglist.models.ShoppingListModel
-import com.itlions.shoppinglist.models.ShoppingListModelImpl
 import com.itlions.shoppinglist.presenters.base.BasePresenter
 import com.itlions.shoppinglist.views.ShoppingListView
-
-/**
- * Created by Oleg on 18.10.2015.
- */
 
 interface ShoppingListPresenter : BasePresenter {
     fun onItemClicked(item: ProductList)
@@ -18,15 +14,14 @@ interface ShoppingListPresenter : BasePresenter {
 
 class ShoppingListPresenterImpl(val view: ShoppingListView) : ShoppingListPresenter {
 
-    val model: ShoppingListModel by lazy {
-        ShoppingListModelImpl()
-    }
-    val shoppingLists: List<ProductList>? by lazy {
-        model.getShoppingList();
+    val interactor: ShoppingListInteractor by lazy {
+        ShoppingListInteractorImpl(view.getContext())
     }
 
     fun loadShoppingLists() {
-        view.setShoppingList(shoppingLists ?: null)
+        interactor.loadShoppingList { productLists ->
+            view.onListsLoaded(productLists)
+        }
     }
 
     override fun onItemClicked(item: ProductList) {

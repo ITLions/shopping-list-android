@@ -19,7 +19,7 @@ import kotlin.properties.Delegates
 /**
  * TODO implement javadoc
  */
-interface CategoryProductsView {
+interface CategoryProductsView : BaseView{
     fun showProducts(list: List<Product>)
     fun addProduct(p: Product)
 }

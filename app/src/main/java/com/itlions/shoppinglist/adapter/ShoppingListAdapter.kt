@@ -1,84 +1,66 @@
 package com.itlions.shoppinglist.adapter
 
 import android.content.Context
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.CheckBox
 import android.widget.TextView
 import com.itlions.shoppinglist.R
-import com.itlions.shoppinglist.model.Category
 import com.itlions.shoppinglist.model.ProductList
+import kotlin.properties.Delegates
 
 /**
  * Created by omazhukin on 10/19/2015.
  */
 
-class ShoppingLisAdapter(private val context: Context) : BaseAdapter() {
+class ShoppingListAdapter(private val context: Context) : RecyclerView.Adapter<ShoppingListAdapter.ViewHolder>() {
+
 
     private var itemsList: List<ProductList>? = null
     private val lInflater: LayoutInflater
-    var listener : ((View, ProductList) -> Unit)? = null
+    var listener: ((View, ProductList) -> Unit)? = null
 
     init {
         lInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     }
 
-    override fun getCount(): Int {
-        return if (itemsList == null) 0 else itemsList!!.size()
+    override fun onBindViewHolder(holder: ShoppingListAdapter.ViewHolder?, position: Int) {
+        var productList = getItem(position)
+        holder?.title?.text = productList.name
+        holder?.itemView?.setOnClickListener { view ->
+            listener?.invoke(view, productList)
+        }
     }
 
-    fun setOnClickListener(listener : (View, ProductList) -> Unit) {
+    override fun getItemCount() = if (itemsList == null)  0 else itemsList!!.size()
+
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ShoppingListAdapter.ViewHolder {
+        var convertView = lInflater.inflate(R.layout.item_shopping_list, parent, false)
+        return ViewHolder(convertView)
+    }
+
+    fun setOnClickListener(listener: (View, ProductList) -> Unit) {
         this.listener = listener
     }
 
-    override fun getItem(position: Int): ProductList {
+    fun getItem(position: Int): ProductList {
         return itemsList!!.get(position)
     }
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
-        var convertView = convertView
-
-        val viewHolder: ViewHolder
-
-        if (convertView == null) {
-            convertView = lInflater.inflate(R.layout.item_shopping_list, parent, false)
-
-            // well set up the ViewHolder
-            viewHolder = ViewHolder()
-            viewHolder.title = convertView!!.findViewById(R.id.txt_list_title) as TextView
-            viewHolder.checkBox = convertView.findViewById(R.id.list_checkbox) as CheckBox
-
-            // store the holder with the view.
-            convertView.tag = viewHolder
-        } else {
-            viewHolder = convertView.tag as ViewHolder
-        }
-
-        val productList = getItem(position)
-
-        viewHolder.title?.text = productList.name
-        //viewHolder.checkBox.setChecked(productList.getChecked());
-
-        convertView?.setOnClickListener {
-            listener?.invoke(convertView as View, productList!!)
-        }
-
-        return convertView
-    }
-
-    fun setData(productList: List<ProductList>?) {
+    fun updateData(productList: List<ProductList>?) {
         itemsList = productList;
         notifyDataSetChanged()
     }
 
-    internal inner class ViewHolder {
-        var title: TextView? = null
-        var checkBox: CheckBox? = null
+    inner class ViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
+        var title: TextView by Delegates.notNull<TextView>()
+        var checkBox: CheckBox by Delegates.notNull<CheckBox>()
+
+        init {
+            title = view.findViewById(R.id.txt_list_title) as TextView
+            checkBox = view.findViewById(R.id.list_checkbox) as CheckBox
+        }
     }
 }

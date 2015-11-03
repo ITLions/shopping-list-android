@@ -14,7 +14,7 @@ import kotlin.properties.Delegates
  * TODO implement javadoc
  */
 
-interface SelectCategoryView {
+interface SelectCategoryView : BaseView {
     fun showCategories(list : List<Category>)
 }
 

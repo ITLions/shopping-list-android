@@ -19,7 +19,7 @@ import kotlin.properties.Delegates
  * Created by omazhukin on 10/28/2015.
  */
 
-interface ViewListView {
+interface ViewListView : BaseView {
     fun showProductList(productList: List<Product>)
 }
 

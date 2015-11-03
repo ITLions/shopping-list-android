@@ -9,7 +9,7 @@ import java.io.FileOutputStream
 /**
  * TODO implement javadoc
  */
-fun Activity.asyncWithResult<T>(task: () -> T, after: (T) -> Any) {
+fun Context.asyncWithResult<T>(task: () -> T, after: (T) -> Any) {
     var result: T
     async {
         result = task()

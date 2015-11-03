@@ -14,7 +14,7 @@ import kotlin.properties.Delegates
 /**
  * TODO implement javadoc
  */
-interface SelectedtemsView {
+interface SelectedtemsView : BaseView{
     fun showSelectedItems(list: MutableList<Product>)
     fun addProduct(p: Product)
 }

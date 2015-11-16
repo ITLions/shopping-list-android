@@ -2,7 +2,7 @@ package com.itlions.shoppinglist.model.database
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import org.jetbrains.anko.db.ManagedSQLiteOpenHelper
+import org.jetbrains.anko.db.*
 
 /**
  * TODO implement javadoc
@@ -20,6 +20,34 @@ class SLDatabase(ctx: Context, dbName: String) : ManagedSQLiteOpenHelper(ctx, db
 
     override fun onCreate(db: SQLiteDatabase) {
         // Here you create tables (more info about that is below)
+        instance?.use {
+            createTable(Table.Product.NAME,
+                    true,
+                    Table.Product.FIELD_ID to INTEGER + PRIMARY_KEY + UNIQUE,
+                    Table.Product.FIELD_NAME to TEXT,
+                    Table.Product.FIELD_DESCRIPTION to TEXT,
+                    Table.Product.FIELD_ICON to TEXT,
+                    Table.Product.FIELD_UNIT to INTEGER,
+                    Table.Product.FIELD_CATEGORY to INTEGER)
+            createTable(
+                    Table.Unit.NAME,
+                    true,
+                    Table.Unit.FIELD_ID to INTEGER + PRIMARY_KEY + UNIQUE,
+                    Table.Unit.FIELD_NAME to TEXT)
+            createTable(
+                    Table.Category.NAME,
+                    true,
+                    Table.Category.FIELD_ID to INTEGER + PRIMARY_KEY + UNIQUE,
+                    Table.Category.FIELD_NAME to TEXT,
+                    Table.Category.FIELD_DESCRIPTION to TEXT,
+                    Table.Category.FIELD_ICON to TEXT)
+            createTable(
+                    Table.ProductList.NAME,
+                    true,
+                    Table.ProductList.FIELD_ID to INTEGER + PRIMARY_KEY + UNIQUE,
+                    Table.ProductList.FIELD_NAME to TEXT,
+                    Table.ProductList.FIELD_CREATED_DATE to INTEGER)
+        }
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

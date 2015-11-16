@@ -4,7 +4,7 @@ import com.itlions.shoppinglist.interactor.ShoppingListInteractor
 import com.itlions.shoppinglist.interactor.ShoppingListInteractorImpl
 import com.itlions.shoppinglist.model.ProductList
 import com.itlions.shoppinglist.presenters.base.BasePresenter
-import com.itlions.shoppinglist.views.ShoppingListView
+import com.itlions.shoppinglist.ui.views.ShoppingListView
 
 interface ShoppingListPresenter : BasePresenter {
     fun onItemClicked(item: ProductList)

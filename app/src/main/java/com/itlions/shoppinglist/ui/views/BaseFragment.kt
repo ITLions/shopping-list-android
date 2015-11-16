@@ -1,4 +1,4 @@
-package com.itlions.shoppinglist.fragment.base
+package com.itlions.shoppinglist.ui.views
 
 import android.content.Context
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.itlions.shoppinglist.presenters.base.BasePresenter
-import com.itlions.shoppinglist.views.BaseView
+import com.itlions.shoppinglist.ui.views.BaseView
 
 /**
  * Created by Oleg on 18.10.2015.

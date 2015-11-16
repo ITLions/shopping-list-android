@@ -9,7 +9,7 @@ import android.view.View
 import android.view.Menu
 import android.view.MenuItem
 import com.itlions.shoppinglist.navigation.Navigator
-import com.itlions.shoppinglist.views.ShoppingListFragment
+import com.itlions.shoppinglist.ui.views.ShoppingListFragment
 import kotlin.properties.Delegates
 
 class ShoppingListActivity : AppCompatActivity() {

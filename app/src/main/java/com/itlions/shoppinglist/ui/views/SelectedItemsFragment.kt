@@ -1,11 +1,11 @@
-package com.itlions.shoppinglist.views
+package com.itlions.shoppinglist.ui.views
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.itlions.shoppinglist.R
-import com.itlions.shoppinglist.adapter.CategoryAdapterAdapter
-import com.itlions.shoppinglist.adapter.ProductAdapter
-import com.itlions.shoppinglist.fragment.base.BaseFragment
+import com.itlions.shoppinglist.ui.adapter.CategoryAdapterAdapter
+import com.itlions.shoppinglist.ui.adapter.ProductAdapter
+import com.itlions.shoppinglist.ui.views.BaseFragment
 import com.itlions.shoppinglist.model.Product
 import com.itlions.shoppinglist.model.SLDataManager
 import com.itlions.shoppinglist.presenters.SelectItemsPresenter

@@ -1,11 +1,11 @@
-package com.itlions.shoppinglist.views
+package com.itlions.shoppinglist.ui.views
 
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ProgressBar
 import com.itlions.shoppinglist.R
-import com.itlions.shoppinglist.adapter.ShoppingListAdapter
+import com.itlions.shoppinglist.ui.adapter.ShoppingListAdapter
 import com.itlions.shoppinglist.fragment.base.BaseFragment
 import com.itlions.shoppinglist.model.ProductList
 import com.itlions.shoppinglist.navigation.Navigator

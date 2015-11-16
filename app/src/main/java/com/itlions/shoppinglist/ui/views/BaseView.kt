@@ -1,4 +1,4 @@
-package com.itlions.shoppinglist.views
+package com.itlions.shoppinglist.ui.views
 
 import android.content.Context
 

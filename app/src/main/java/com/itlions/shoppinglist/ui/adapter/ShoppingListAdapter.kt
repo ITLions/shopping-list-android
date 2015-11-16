@@ -1,4 +1,4 @@
-package com.itlions.shoppinglist.adapter
+package com.itlions.shoppinglist.ui.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView

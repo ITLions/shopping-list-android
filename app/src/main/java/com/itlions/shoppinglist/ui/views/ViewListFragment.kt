@@ -1,18 +1,11 @@
 package com.itlions.shoppinglist.ui.views
 
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.itlions.shoppinglist.R
-import com.itlions.shoppinglist.ui.adapter.CategoryAdapterAdapter
-import com.itlions.shoppinglist.ui.adapter.ProductAdapter
-import com.itlions.shoppinglist.ui.views.BaseFragment
 import com.itlions.shoppinglist.model.Product
-import com.itlions.shoppinglist.model.ProductList
-import com.itlions.shoppinglist.navigation.Navigator
-import com.itlions.shoppinglist.presenters.SelectItemsPresenter
 import com.itlions.shoppinglist.presenters.ViewListPresenter
+import com.itlions.shoppinglist.ui.adapter.ProductAdapter
 import kotlin.properties.Delegates
 
 /**

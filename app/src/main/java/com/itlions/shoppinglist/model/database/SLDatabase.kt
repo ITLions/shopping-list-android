@@ -27,8 +27,8 @@ class SLDatabase(ctx: Context, dbName: String) : ManagedSQLiteOpenHelper(ctx, db
                     Table.Product.FIELD_NAME to TEXT,
                     Table.Product.FIELD_DESCRIPTION to TEXT,
                     Table.Product.FIELD_ICON to TEXT,
-                    Table.Product.FIELD_UNIT to INTEGER,
-                    Table.Product.FIELD_CATEGORY to INTEGER)
+                    Table.Product.FIELD_UNIT to FOREIGN_KEY(Table.Product.FIELD_UNIT, Table.Unit.NAME, Table.Unit.FIELD_ID),
+                    Table.Product.FIELD_CATEGORY to FOREIGN_KEY(Table.Product.FIELD_CATEGORY, Table.Category.NAME, Table.Category.FIELD_ID))
             createTable(
                     Table.Unit.NAME,
                     true,
@@ -47,6 +47,16 @@ class SLDatabase(ctx: Context, dbName: String) : ManagedSQLiteOpenHelper(ctx, db
                     Table.ProductList.FIELD_ID to INTEGER + PRIMARY_KEY + UNIQUE,
                     Table.ProductList.FIELD_NAME to TEXT,
                     Table.ProductList.FIELD_CREATED_DATE to INTEGER)
+            createTable(
+                    Table.ListItem.NAME,
+                    true,
+                    Table.ListItem.FIELD_ID to INTEGER + PRIMARY_KEY + UNIQUE,
+                    Table.ListItem.FIELD_NAME to TEXT,
+                    Table.ListItem.FIELD_AMOUNT to INTEGER,
+                    Table.ListItem.FIELD_CHECKED to INTEGER,
+                    Table.ListItem.FIELD_PRODUCT to FOREIGN_KEY(Table.ListItem.FIELD_PRODUCT, Table.Product.NAME, Table.Product.FIELD_ID),
+                    Table.ListItem.FIELD_PRODUCT_LIST to FOREIGN_KEY(Table.ListItem.FIELD_PRODUCT_LIST, Table.ProductList.NAME, Table.ProductList.FIELD_ID)
+            )
         }
     }
 

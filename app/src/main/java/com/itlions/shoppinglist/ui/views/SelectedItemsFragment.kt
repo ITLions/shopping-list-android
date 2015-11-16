@@ -15,7 +15,7 @@ import kotlin.properties.Delegates
  * TODO implement javadoc
  */
 interface SelectedtemsView : BaseView{
-    fun showSelectedItems(list: MutableList<Product>)
+    fun showSelectedItems(list: List<Product>)
     fun addProduct(p: Product)
 }
 
@@ -40,7 +40,7 @@ class SelectedItemsFragment : BaseFragment<SelectItemsPresenter>(), Selectedtems
         presenter.loadProductList()
     }
 
-    override fun showSelectedItems(list: MutableList<Product>) {
+    override fun showSelectedItems(list: List<Product>) {
         mAdapter.initWithProducts(list)
     }
 

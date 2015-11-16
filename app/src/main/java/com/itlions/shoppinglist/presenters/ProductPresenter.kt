@@ -13,7 +13,9 @@ import com.itlions.shoppinglist.ui.views.CategoryProductsView
  */
 class ProductPresenter(val view: CategoryProductsView) : BasePresenter {
     fun loadCategoryProductList() {
-        view.showProducts(SLDataManager.getProducts())
+        SLDataManager.getProducts(view.getContext()) {
+            productList -> view.showProducts(productList)
+        }
     }
 
     fun onProductClicked(c: Context, p: Product) {

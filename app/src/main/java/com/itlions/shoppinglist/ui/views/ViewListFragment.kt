@@ -50,6 +50,6 @@ class ViewListFragment : BaseFragment<ViewListPresenter>(), ViewListView {
     }
 
     override fun afterViewInited() {
-        presenter.loadProductList(arguments.getSerializable(BUNDLE.PRODUCT_LIST) as ProductList)
+//        presenter.loadProductList(arguments.getSerializable(BUNDLE.PRODUCT_LIST) as ProductList)
     }
 }

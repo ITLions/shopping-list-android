@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.ProgressBar
 import com.itlions.shoppinglist.R
 import com.itlions.shoppinglist.ui.adapter.ShoppingListAdapter
-import com.itlions.shoppinglist.fragment.base.BaseFragment
 import com.itlions.shoppinglist.model.ProductList
 import com.itlions.shoppinglist.navigation.Navigator
 import com.itlions.shoppinglist.presenters.ShoppingListPresenterImpl

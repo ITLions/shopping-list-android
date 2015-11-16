@@ -10,10 +10,13 @@ import com.itlions.shoppinglist.ui.views.SelectedtemsView
  */
 class SelectItemsPresenter(val view: SelectedtemsView) : BasePresenter {
     fun loadProductList() {
-        view.showSelectedItems(SLDataManager.getProducts())
+        SLDataManager.getProducts(view.getContext(), { productList ->
+            view.showSelectedItems(productList)
+        })
+
     }
 
-    fun onProductSelected(p : Product) {
+    fun onProductSelected(p: Product) {
 
     }
 

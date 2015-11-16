@@ -7,12 +7,12 @@ import com.itlions.shoppinglist.ui.views.SelectCategoryView
 /**
  * TODO implement javadoc
  */
-class SelectCategoryPresenter(val view : SelectCategoryView) : BasePresenter {
-    val categories by lazy {
-        SLDataManager.getCategories()
-    }
+class SelectCategoryPresenter(val view: SelectCategoryView) : BasePresenter {
 
     fun loadCategories() {
-        view.showCategories(categories)
+        SLDataManager.getCategories(view.getContext()) {
+            categoriesList ->
+            view.showCategories(categoriesList)
+        }
     }
 }

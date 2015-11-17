@@ -20,7 +20,7 @@ class ShoppingListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_shopping_list)
+        setContentView(R.layout.activity_browse_lists)
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
         fab.setOnClickListener {

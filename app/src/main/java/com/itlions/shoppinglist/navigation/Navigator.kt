@@ -11,9 +11,9 @@ import com.itlions.shoppinglist.CreateNewListActivity
 import com.itlions.shoppinglist.R
 import com.itlions.shoppinglist.model.Product
 import com.itlions.shoppinglist.model.ProductList
-import com.itlions.shoppinglist.views.CategoryProductsFragment
-import com.itlions.shoppinglist.views.ShoppingListFragment
-import com.itlions.shoppinglist.views.ViewListFragment
+import com.itlions.shoppinglist.ui.views.CategoryProductsFragment
+import com.itlions.shoppinglist.ui.views.ShoppingListFragment
+import com.itlions.shoppinglist.ui.views.ViewListFragment
 
 /**
  * Created by omazhukin on 10/19/2015.

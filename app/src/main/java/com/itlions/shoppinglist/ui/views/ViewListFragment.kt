@@ -1,25 +1,18 @@
-package com.itlions.shoppinglist.views
+package com.itlions.shoppinglist.ui.views
 
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.itlions.shoppinglist.R
-import com.itlions.shoppinglist.adapter.CategoryAdapterAdapter
-import com.itlions.shoppinglist.adapter.ProductAdapter
-import com.itlions.shoppinglist.fragment.base.BaseFragment
 import com.itlions.shoppinglist.model.Product
-import com.itlions.shoppinglist.model.ProductList
-import com.itlions.shoppinglist.navigation.Navigator
-import com.itlions.shoppinglist.presenters.SelectItemsPresenter
 import com.itlions.shoppinglist.presenters.ViewListPresenter
+import com.itlions.shoppinglist.ui.adapter.ProductAdapter
 import kotlin.properties.Delegates
 
 /**
  * Created by omazhukin on 10/28/2015.
  */
 
-interface ViewListView {
+interface ViewListView : BaseView {
     fun showProductList(productList: List<Product>)
 }
 
@@ -50,6 +43,6 @@ class ViewListFragment : BaseFragment<ViewListPresenter>(), ViewListView {
     }
 
     override fun afterViewInited() {
-        presenter.loadProductList(arguments.getSerializable(BUNDLE.PRODUCT_LIST) as ProductList)
+//        presenter.loadProductList(arguments.getSerializable(BUNDLE.PRODUCT_LIST) as ProductList)
     }
 }

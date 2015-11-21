@@ -7,9 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import com.itlions.shoppinglist.listener.ProductAddedListener
 import com.itlions.shoppinglist.model.Product
 import com.itlions.shoppinglist.navigation.Navigator
-import com.itlions.shoppinglist.views.CategoryProductsFragment
-import com.itlions.shoppinglist.views.SelectCategoryFragment
-import com.itlions.shoppinglist.views.SelectedtemsView
+import com.itlions.shoppinglist.ui.views.CategoryProductsFragment
+import com.itlions.shoppinglist.ui.views.SelectCategoryFragment
+import com.itlions.shoppinglist.ui.views.SelectedtemsView
 
 /**
  * TODO implement javadoc

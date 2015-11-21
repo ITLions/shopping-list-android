@@ -1,14 +1,9 @@
 package com.itlions.shoppinglist.presenters
 
 import com.itlions.shoppinglist.model.ProductList
-import com.itlions.shoppinglist.models.ShoppingListModel
-import com.itlions.shoppinglist.models.ShoppingListModelImpl
+import com.itlions.shoppinglist.model.SLDataManager
 import com.itlions.shoppinglist.presenters.base.BasePresenter
-import com.itlions.shoppinglist.views.ShoppingListView
-
-/**
- * Created by Oleg on 18.10.2015.
- */
+import com.itlions.shoppinglist.ui.views.ShoppingListView
 
 interface ShoppingListPresenter : BasePresenter {
     fun onItemClicked(item: ProductList)
@@ -17,18 +12,6 @@ interface ShoppingListPresenter : BasePresenter {
 }
 
 class ShoppingListPresenterImpl(val view: ShoppingListView) : ShoppingListPresenter {
-
-    val model: ShoppingListModel by lazy {
-        ShoppingListModelImpl()
-    }
-    val shoppingLists: List<ProductList>? by lazy {
-        model.getShoppingList();
-    }
-
-    fun loadShoppingLists() {
-        view.setShoppingList(shoppingLists ?: null)
-    }
-
     override fun onItemClicked(item: ProductList) {
         throw UnsupportedOperationException()
     }
@@ -40,4 +23,13 @@ class ShoppingListPresenterImpl(val view: ShoppingListView) : ShoppingListPresen
     override fun onItemAdd(item: ProductList) {
         throw UnsupportedOperationException()
     }
+
+    fun loadShoppingLists() {
+        view.showProgress(true)
+        SLDataManager.getProductLists(view.getContext()) { productLists ->
+            view.showProgress(false)
+            view.onListsLoaded(productLists)
+        }
+    }
+
 }

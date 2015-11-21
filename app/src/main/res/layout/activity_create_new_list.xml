@@ -1,16 +1,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              android:orientation="horizontal"
               android:layout_width="match_parent"
               android:showDividers="middle"
               android:divider="@android:color/black"
               android:layout_height="match_parent">
     <fragment
-        android:layout_width="match_parent"
-        android:layout_height="124dp"
-        class="com.itlions.shoppinglist.views.SelectedItemsFragment"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        class="com.itlions.shoppinglist.ui.views.SelectedItemsFragment"
         android:id="@+id/fragment_added_products"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+
+
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    </LinearLayout>
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.itlions.shoppinglist.dialog
+package com.itlions.shoppinglist.ui.dialog
 
 import android.app.Activity
 import android.content.Context

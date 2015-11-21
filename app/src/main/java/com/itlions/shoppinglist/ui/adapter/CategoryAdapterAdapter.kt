@@ -1,4 +1,4 @@
-package com.itlions.shoppinglist.adapter
+package com.itlions.shoppinglist.ui.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -7,34 +7,33 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.itlions.shoppinglist.R
-import com.itlions.shoppinglist.model.Category
+import com.itlions.shoppinglist.model.Product
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.layoutInflater
-import kotlin.properties.Delegates
 
 /**
- * TODO implement javadoc
+ * Created by omazhukin on 10/27/2015.
  */
-class CategoriesAdapter(val context : Context) : RecyclerView.Adapter<CategoriesAdapter.VH>(){
+class CategoryAdapterAdapter(val context : Context) : RecyclerView.Adapter<CategoryAdapterAdapter.VH>(){
     val layoutInflater = context.layoutInflater
-    var categories : List<Category>? = null
-    var listener : ((View, Category) -> Unit)? = null
+    var categories : List<Product>? = null
+    var listener : ((View, Product) -> Unit)? = null
 
-    fun initWithCategories(list : List<Category>) {
+    fun initWithProduct(list : List<Product>) {
         categories = list
         notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: VH?, position: Int) {
         val product = categories?.get(position)
-//        Picasso.with(context).load(product?.icon).into(holder?.background)
+        Picasso.with(context).load(product?.icon).fit().into(holder?.background)
         holder?.title?.text = product?.name
         holder?.itemView?.setOnClickListener {
             listener?.invoke(holder?.itemView, product!!)
         }
     }
 
-    fun setOnClickListener(listener : (View, Category) -> Unit) {
+    fun setOnClickListener(listener : (View, Product) -> Unit) {
         this.listener = listener
     }
 

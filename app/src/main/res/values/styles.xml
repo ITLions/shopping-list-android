@@ -19,5 +19,4 @@
         <item name="android:layout_margin">@dimen/dimen_medium</item>
     </style>
 
-
 </resources>

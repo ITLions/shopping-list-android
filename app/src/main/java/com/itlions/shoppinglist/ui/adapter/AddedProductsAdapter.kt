@@ -1,18 +1,14 @@
-package com.itlions.shoppinglist.adapter
+package com.itlions.shoppinglist.ui.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.itlions.shoppinglist.R
 import com.itlions.shoppinglist.model.Product
-import com.squareup.picasso.Picasso
 import org.jetbrains.anko.layoutInflater
 
 /**
@@ -20,7 +16,7 @@ import org.jetbrains.anko.layoutInflater
  */
 class ProductAdapter(val context: Context) : RecyclerView.Adapter<ProductAdapter.VH>() {
 
-    var products: MutableList<Product>? = null
+    var products: List<Product>? = null
     val layoutInflater: LayoutInflater = context.layoutInflater
 
     override fun getItemCount(): Int = products?.size ?: 0
@@ -36,17 +32,17 @@ class ProductAdapter(val context: Context) : RecyclerView.Adapter<ProductAdapter
         holder?.title?.text = product?.name
     }
 
-    fun initWithProducts(products: MutableList<Product>) {
+    fun initWithProducts(products: List<Product>) {
         this.products = products;
     }
 
     fun addProduct(p: Product) {
-        this.products?.add(p);
+        //        this.products?.add(p);
         notifyDataSetChanged()
     }
 
     fun deleteProduct(position: Int) {
-        this.products?.removeAt(position);
+        //        this.products?.removeAt(position);
         notifyItemChanged(position)
     }
 

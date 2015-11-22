@@ -9,6 +9,7 @@ import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.parseList
 import org.jetbrains.anko.db.select
 import org.jetbrains.anko.uiThread
+import timber.log.Timber
 
 
 /**
@@ -82,7 +83,8 @@ class SLDataManager {
                 cv.put(Table.Category.FIELD_NAME, category.name)
                 cv.put(Table.Category.FIELD_DESCRIPTION, category.description)
                 cv.put(Table.Category.FIELD_ICON, category.icon)
-                insert(Table.Category.NAME, null, cv)
+                val i = insert(Table.Category.NAME, null, cv)
+                Timber.d("$i")
             }
         }
 

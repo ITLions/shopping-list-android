@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
 import com.itlions.shoppinglist.R
+import com.itlions.shoppinglist.model.Category
+import com.itlions.shoppinglist.model.SLDataManager
 import com.itlions.shoppinglist.model.network.Service
 import org.jetbrains.anko.async
 import org.jetbrains.anko.find
@@ -26,7 +28,14 @@ class LoadDataActivity : AppCompatActivity() {
         var networkManager = Service()
 
         async {
-            var message = networkManager.load()
+            var message: String?;
+            var items: List<Category>?
+            var resp = networkManager.service.loadCategories(0, 30).execute()
+            items = resp.body().content.items
+            message = items.toString()
+
+            items.forEach { item -> SLDataManager.saveCategory(view.context, item) }
+
             uiThread {
                 log.text = message
             }

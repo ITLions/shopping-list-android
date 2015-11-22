@@ -13,51 +13,58 @@ class SLDatabase(ctx: Context, dbName: String) : ManagedSQLiteOpenHelper(ctx, db
 
         var instance: SLDatabase? = null
 
-        fun import(ctx: Context, dbName: String) {
-            instance = SLDatabase(ctx, dbName);
+        fun getInstance(ctx: Context): SLDatabase {
+            if (instance == null) {
+                instance = SLDatabase(ctx.getApplicationContext(), "test")
+            }
+            return instance!!
         }
     }
 
     override fun onCreate(db: SQLiteDatabase) {
         // Here you create tables (more info about that is below)
-        instance?.use {
-            createTable(Table.Product.NAME,
-                    true,
-                    Table.Product.FIELD_ID to INTEGER + PRIMARY_KEY + UNIQUE,
-                    Table.Product.FIELD_NAME to TEXT,
-                    Table.Product.FIELD_DESCRIPTION to TEXT,
-                    Table.Product.FIELD_ICON to TEXT,
-                    Table.Product.FIELD_UNIT to FOREIGN_KEY(Table.Product.FIELD_UNIT, Table.Unit.NAME, Table.Unit.FIELD_ID),
-                    Table.Product.FIELD_CATEGORY to FOREIGN_KEY(Table.Product.FIELD_CATEGORY, Table.Category.NAME, Table.Category.FIELD_ID))
-            createTable(
-                    Table.Unit.NAME,
-                    true,
-                    Table.Unit.FIELD_ID to INTEGER + PRIMARY_KEY + UNIQUE,
-                    Table.Unit.FIELD_NAME to TEXT)
-            createTable(
-                    Table.Category.NAME,
-                    true,
-                    Table.Category.FIELD_ID to INTEGER + PRIMARY_KEY + UNIQUE,
-                    Table.Category.FIELD_NAME to TEXT,
-                    Table.Category.FIELD_DESCRIPTION to TEXT,
-                    Table.Category.FIELD_ICON to TEXT)
-            createTable(
-                    Table.ProductList.NAME,
-                    true,
-                    Table.ProductList.FIELD_ID to INTEGER + PRIMARY_KEY + UNIQUE,
-                    Table.ProductList.FIELD_NAME to TEXT,
-                    Table.ProductList.FIELD_CREATED_DATE to INTEGER)
-            createTable(
-                    Table.ListItem.NAME,
-                    true,
-                    Table.ListItem.FIELD_ID to INTEGER + PRIMARY_KEY + UNIQUE,
-                    Table.ListItem.FIELD_NAME to TEXT,
-                    Table.ListItem.FIELD_AMOUNT to INTEGER,
-                    Table.ListItem.FIELD_CHECKED to INTEGER,
-                    Table.ListItem.FIELD_PRODUCT to FOREIGN_KEY(Table.ListItem.FIELD_PRODUCT, Table.Product.NAME, Table.Product.FIELD_ID),
-                    Table.ListItem.FIELD_PRODUCT_LIST to FOREIGN_KEY(Table.ListItem.FIELD_PRODUCT_LIST, Table.ProductList.NAME, Table.ProductList.FIELD_ID)
-            )
-        }
+
+        db.createTable(
+                Table.ProductList.NAME,
+                true,
+                Table.ProductList.FIELD_ID to INTEGER + PRIMARY_KEY + UNIQUE,
+                Table.ProductList.FIELD_NAME to TEXT,
+                Table.ProductList.FIELD_CREATED_DATE to INTEGER)
+        db.createTable(
+                Table.Category.NAME,
+                true,
+                Table.Category.FIELD_ID to TEXT + PRIMARY_KEY + UNIQUE,
+                Table.Category.FIELD_NAME to TEXT,
+                Table.Category.FIELD_DESCRIPTION to TEXT,
+                Table.Category.FIELD_ICON to TEXT)
+        db.createTable(
+                Table.Unit.NAME,
+                true,
+                Table.Unit.FIELD_ID to TEXT + PRIMARY_KEY + UNIQUE,
+                Table.Unit.FIELD_NAME to TEXT)
+        db.createTable(Table.Product.NAME,
+                true,
+                Table.Product.FIELD_ID to TEXT + PRIMARY_KEY + UNIQUE,
+                Table.Product.FIELD_NAME to TEXT,
+                Table.Product.FIELD_DESCRIPTION to TEXT,
+                Table.Product.FIELD_ICON to TEXT,
+                Table.Product.FIELD_UNIT to TEXT,
+                Table.Product.FIELD_CATEGORY to TEXT,
+                "" to FOREIGN_KEY(Table.Product.FIELD_UNIT, Table.Unit.NAME, Table.Unit.FIELD_ID),
+                "" to FOREIGN_KEY(Table.Product.FIELD_CATEGORY, Table.Category.NAME, Table.Category.FIELD_ID))
+
+        db.createTable(
+                Table.ListItem.NAME,
+                true,
+                Table.ListItem.FIELD_ID to INTEGER + PRIMARY_KEY + UNIQUE,
+                Table.ListItem.FIELD_NAME to TEXT,
+                Table.ListItem.FIELD_AMOUNT to INTEGER,
+                Table.ListItem.FIELD_CHECKED to INTEGER,
+                Table.ListItem.FIELD_PRODUCT to TEXT,
+                Table.ListItem.FIELD_PRODUCT_LIST to TEXT,
+                "" to FOREIGN_KEY(Table.ListItem.FIELD_PRODUCT, Table.Product.NAME, Table.Product.FIELD_ID),
+                "" to FOREIGN_KEY(Table.ListItem.FIELD_PRODUCT_LIST, Table.ProductList.NAME, Table.ProductList.FIELD_ID)
+        )
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -65,6 +72,15 @@ class SLDatabase(ctx: Context, dbName: String) : ManagedSQLiteOpenHelper(ctx, db
     }
 }
 
+fun SQLiteDatabase.createTable(tableName: String, vararg columns: Pair<String, SqlType>) {
+    val escapedTableName = tableName.replace("`", "``")
+    execSQL(
+            columns.map { col ->
+                "${col.first} ${col.second}"
+            }.joinToString(", ", prefix = "CREATE TABLE `$escapedTableName`(", postfix = ");")
+    )
+}
+
 // Access property for Context
 val Context.database: SLDatabase
-    get() = SLDatabase.instance!!
+    get() = SLDatabase.getInstance(applicationContext)

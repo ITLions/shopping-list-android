@@ -36,16 +36,6 @@ class Service {
         retrofit.create(javaClass<Api>());
     }
 
-
-    fun load(): String {
-        try {
-            var resp = service.loadCategories(0, 30).execute()
-            return resp.body().content.items.toString()
-        } catch(e: IOException) {
-            return e.toString()
-        }
-
-    }
 }
 
 class Metadata(val code: Int, val message: String)

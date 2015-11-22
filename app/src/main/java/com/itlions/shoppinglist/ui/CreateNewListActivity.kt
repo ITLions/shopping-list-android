@@ -1,9 +1,10 @@
-package com.itlions.shoppinglist
+package com.itlions.shoppinglist.ui
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.itlions.shoppinglist.R
 import com.itlions.shoppinglist.listener.ProductAddedListener
 import com.itlions.shoppinglist.model.Product
 import com.itlions.shoppinglist.navigation.Navigator

@@ -2,7 +2,7 @@ package com.itlions.shoppinglist.ui.views
 
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.itlions.shoppinglist.CreateNewListActivity
+import com.itlions.shoppinglist.ui.CreateNewListActivity
 import com.itlions.shoppinglist.R
 import com.itlions.shoppinglist.ui.adapter.CategoriesAdapter
 import com.itlions.shoppinglist.ui.adapter.CategoryAdapterAdapter

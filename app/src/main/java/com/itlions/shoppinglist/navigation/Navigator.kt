@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
-import com.itlions.shoppinglist.CreateNewListActivity
+import com.itlions.shoppinglist.ui.CreateNewListActivity
 import com.itlions.shoppinglist.R
 import com.itlions.shoppinglist.model.Product
 import com.itlions.shoppinglist.model.ProductList

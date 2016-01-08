@@ -3,6 +3,7 @@ package com.itlions.shoppinglist.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import com.itlions.shoppinglist.R
 import com.itlions.shoppinglist.listener.ProductAddedListener
@@ -25,6 +26,10 @@ class CreateNewListActivity : AppCompatActivity(), ProductAddedListener {
         currentList.addProduct(p)
     }
 
+    override fun onListAdded() {
+        currentList.saveList()
+    }
+
     companion object {
         fun launch(context: Context) = context.startActivity(Intent(context, javaClass<CreateNewListActivity>()))
     }
@@ -38,4 +43,5 @@ class CreateNewListActivity : AppCompatActivity(), ProductAddedListener {
     fun goInsideCategory() {
         Navigator.showCategoryProductsFragment(this)
     }
+
 }

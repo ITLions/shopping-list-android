@@ -7,4 +7,5 @@ import com.itlions.shoppinglist.model.Product
  */
 interface ProductAddedListener {
     fun onProductAdded(p : Product)
+    fun onListAdded()
 }

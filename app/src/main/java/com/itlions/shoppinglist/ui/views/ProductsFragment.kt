@@ -1,32 +1,27 @@
 package com.itlions.shoppinglist.ui.views
 
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.itlions.shoppinglist.ui.CreateNewListActivity
 import com.itlions.shoppinglist.R
-import com.itlions.shoppinglist.ui.adapter.CategoriesAdapter
-import com.itlions.shoppinglist.ui.adapter.CategoryAdapterAdapter
-import com.itlions.shoppinglist.ui.views.BaseFragment
 import com.itlions.shoppinglist.listener.ProductAddedListener
-import com.itlions.shoppinglist.model.Category
 import com.itlions.shoppinglist.model.Product
-import com.itlions.shoppinglist.presenters.CategoryProductsPresenter
-import com.itlions.shoppinglist.presenters.SelectCategoryPresenter
-import com.itlions.shoppinglist.presenters.SelectItemsPresenter
 import com.itlions.shoppinglist.presenters.ProductPresenter
+import com.itlions.shoppinglist.ui.adapter.CategoryAdapterAdapter
 import kotlin.properties.Delegates
 
 /**
  * TODO implement javadoc
  */
-interface CategoryProductsView : BaseView{
+interface CategoryProductsView : BaseView {
     fun showProducts(list: List<Product>)
-    fun addProduct(p: Product)
+    fun addProduct(p: Product, amount: Int)
 }
 
 class CategoryProductsFragment : BaseFragment<ProductPresenter>(), CategoryProductsView {
 
     val SPAN_COUNT: Int = 3
+    var mFab: FloatingActionButton by Delegates.notNull<FloatingActionButton>()
     var mCategoriesView: RecyclerView by Delegates.notNull<RecyclerView>()
     val mAdapter by lazy {
         CategoryAdapterAdapter(activity)
@@ -43,16 +38,19 @@ class CategoryProductsFragment : BaseFragment<ProductPresenter>(), CategoryProdu
     override fun initPresenter() = ProductPresenter(this)
 
     override fun initView() {
+        mFab = view?.findViewById(R.id.fab) as FloatingActionButton
         mCategoriesView = view?.findViewById(R.id.recyclerView) as RecyclerView
         mCategoriesView.layoutManager = GridLayoutManager(activity, SPAN_COUNT)
         mCategoriesView.adapter = mAdapter
         mAdapter.setOnClickListener { view, product ->
             presenter.onProductClicked(activity, product);
         }
-
+        mFab.setOnClickListener {
+            activity.onBackPressed()
+        }
     }
 
-    override fun addProduct(p: Product) {
+    override fun addProduct(p: Product, amount: Int) {
         (activity as ProductAddedListener).onProductAdded(p)
     }
 

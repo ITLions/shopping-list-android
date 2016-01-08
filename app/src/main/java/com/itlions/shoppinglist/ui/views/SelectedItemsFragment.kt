@@ -3,20 +3,19 @@ package com.itlions.shoppinglist.ui.views
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.itlions.shoppinglist.R
-import com.itlions.shoppinglist.ui.adapter.CategoryAdapterAdapter
-import com.itlions.shoppinglist.ui.adapter.ProductAdapter
-import com.itlions.shoppinglist.ui.views.BaseFragment
 import com.itlions.shoppinglist.model.Product
 import com.itlions.shoppinglist.model.SLDataManager
 import com.itlions.shoppinglist.presenters.SelectItemsPresenter
+import com.itlions.shoppinglist.ui.adapter.ProductAdapter
 import kotlin.properties.Delegates
 
 /**
  * TODO implement javadoc
  */
-interface SelectedtemsView : BaseView{
+interface SelectedtemsView : BaseView {
     fun showSelectedItems(list: List<Product>)
     fun addProduct(p: Product)
+    fun saveList()
 }
 
 class SelectedItemsFragment : BaseFragment<SelectItemsPresenter>(), SelectedtemsView {
@@ -46,5 +45,10 @@ class SelectedItemsFragment : BaseFragment<SelectItemsPresenter>(), Selectedtems
 
     override fun addProduct(p: Product) {
         mAdapter.addProduct(p)
+    }
+
+    override fun saveList() {
+        SLDataManager.saveProductList(activity, mAdapter.products)
+        activity.finish()
     }
 }

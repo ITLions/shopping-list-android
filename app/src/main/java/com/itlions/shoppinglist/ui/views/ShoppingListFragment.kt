@@ -1,6 +1,8 @@
 package com.itlions.shoppinglist.ui.views
 
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ProgressBar
@@ -30,8 +32,8 @@ class ShoppingListFragment : BaseFragment<ShoppingListPresenterImpl>(), Shopping
             progressBar.visibility = View.VISIBLE
             shoppingList.visibility = View.INVISIBLE
         } else {
-            progressBar.visibility = View.VISIBLE
-            shoppingList.visibility = View.INVISIBLE
+            progressBar.visibility = View.INVISIBLE
+            shoppingList.visibility = View.VISIBLE
         }
     }
 
@@ -56,6 +58,7 @@ class ShoppingListFragment : BaseFragment<ShoppingListPresenterImpl>(), Shopping
 
     override fun initView() {
         shoppingList = view?.findViewById(R.id.recyclerView) as RecyclerView
+        shoppingList.layoutManager = LinearLayoutManager(activity)
         shoppingList.adapter = mAdapter
         progressBar = view?.findViewById(R.id.progressBar) as ProgressBar
         mAdapter.setOnClickListener { view, productList -> Navigator.showProductListFragment(activity as AppCompatActivity, productList) }

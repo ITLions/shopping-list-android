@@ -11,9 +11,10 @@ import com.itlions.shoppinglist.ui.views.ViewListView
 
 class ViewListPresenter(val view: ViewListView) : BasePresenter {
 
-    fun loadProductList()  {
-        SLDataManager.getProducts(view.getContext()) {
-            productList -> view.showProductList(productList)
+    fun loadProductList(pl: ProductList) {
+        SLDataManager.getProducts(view.getContext(), pl.id) {
+            productList ->
+            view.showProductList(productList)
         }
     }
 }

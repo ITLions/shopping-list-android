@@ -9,15 +9,21 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.itlions.shoppinglist.R
 import com.itlions.shoppinglist.model.Product
+import com.itlions.shoppinglist.ui.utils.LetterTileProvider
+import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.layoutInflater
+import java.util.*
 
 /**
  * TODO implement javadoc
  */
 class ProductAdapter(val context: Context) : RecyclerView.Adapter<ProductAdapter.VH>() {
 
-    var products: List<Product>? = null
     val layoutInflater: LayoutInflater = context.layoutInflater
+
+    var products: List<Product> = ArrayList<Product>()
+    var letterColorProvider = LetterTileProvider(context)
+    var listener: ((View, Product) -> Unit)? = null
 
     override fun getItemCount(): Int = products?.size ?: 0
 
@@ -28,8 +34,15 @@ class ProductAdapter(val context: Context) : RecyclerView.Adapter<ProductAdapter
 
     override fun onBindViewHolder(holder: VH?, position: Int) {
         val product = products?.get(position)
-        //        Picasso.with(context).load(product?.icon).into(holder?.background)
         holder?.title?.text = product?.name
+        holder?.background?.backgroundColor = letterColorProvider.pickColor(product?.name)
+        holder?.itemView?.setOnClickListener {
+            listener?.invoke(holder?.itemView, product!!)
+        }
+    }
+
+    fun setOnClickListener(listener: (View, Product) -> Unit) {
+        this.listener = listener
     }
 
     fun initWithProducts(products: List<Product>) {
@@ -37,12 +50,12 @@ class ProductAdapter(val context: Context) : RecyclerView.Adapter<ProductAdapter
     }
 
     fun addProduct(p: Product) {
-        //        this.products?.add(p);
+        (products as ArrayList).add(p);
         notifyDataSetChanged()
     }
 
     fun deleteProduct(position: Int) {
-        //        this.products?.removeAt(position);
+        (products as ArrayList).removeAt(position);
         notifyItemChanged(position)
     }
 

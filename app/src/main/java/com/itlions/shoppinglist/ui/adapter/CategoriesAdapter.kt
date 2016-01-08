@@ -8,7 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.itlions.shoppinglist.R
 import com.itlions.shoppinglist.model.Category
+import com.itlions.shoppinglist.ui.utils.LetterTileProvider
 import com.squareup.picasso.Picasso
+import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.layoutInflater
 import kotlin.properties.Delegates
 
@@ -16,7 +18,9 @@ import kotlin.properties.Delegates
  * TODO implement javadoc
  */
 class CategoriesAdapter(val context : Context) : RecyclerView.Adapter<CategoriesAdapter.VH>(){
+
     val layoutInflater = context.layoutInflater
+    var letterColorProvider = LetterTileProvider(context)
     var categories : List<Category>? = null
     var listener : ((View, Category) -> Unit)? = null
 
@@ -27,7 +31,7 @@ class CategoriesAdapter(val context : Context) : RecyclerView.Adapter<Categories
 
     override fun onBindViewHolder(holder: VH?, position: Int) {
         val product = categories?.get(position)
-//        Picasso.with(context).load(product?.icon).into(holder?.background)
+        holder?.background?.backgroundColor = letterColorProvider.pickColor(product?.name)
         holder?.title?.text = product?.name
         holder?.itemView?.setOnClickListener {
             listener?.invoke(holder?.itemView, product!!)

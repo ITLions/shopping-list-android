@@ -26,9 +26,10 @@ class SLDatabase(ctx: Context, dbName: String) : ManagedSQLiteOpenHelper(ctx, db
         db.createTable(
                 Table.ProductList.NAME,
                 true,
-                Table.ProductList.FIELD_ID to INTEGER + PRIMARY_KEY + UNIQUE,
+                Table.ProductList.FIELD_ID to TEXT + PRIMARY_KEY + UNIQUE,
                 Table.ProductList.FIELD_NAME to TEXT,
-                Table.ProductList.FIELD_CREATED_DATE to INTEGER)
+                Table.ProductList.FIELD_CREATED_DATE to INTEGER,
+                Table.ProductList.FIELD_CHECKED to INTEGER)
         db.createTable(
                 Table.Category.NAME,
                 true,
@@ -55,7 +56,7 @@ class SLDatabase(ctx: Context, dbName: String) : ManagedSQLiteOpenHelper(ctx, db
         db.createTable(
                 Table.ListItem.NAME,
                 true,
-                Table.ListItem.FIELD_ID to INTEGER + PRIMARY_KEY + UNIQUE,
+                Table.ListItem.FIELD_ID to TEXT + PRIMARY_KEY + UNIQUE,
                 Table.ListItem.FIELD_NAME to TEXT,
                 Table.ListItem.FIELD_AMOUNT to INTEGER,
                 Table.ListItem.FIELD_CHECKED to INTEGER,

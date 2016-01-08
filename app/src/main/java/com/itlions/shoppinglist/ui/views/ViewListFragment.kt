@@ -4,8 +4,12 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.itlions.shoppinglist.R
 import com.itlions.shoppinglist.model.Product
+import com.itlions.shoppinglist.model.ProductList
 import com.itlions.shoppinglist.presenters.ViewListPresenter
 import com.itlions.shoppinglist.ui.adapter.ProductAdapter
+import com.itlions.shoppinglist.ui.views.base.BaseFragment
+import com.itlions.shoppinglist.ui.views.base.BaseView
+import java.util.*
 import kotlin.properties.Delegates
 
 /**
@@ -39,10 +43,10 @@ class ViewListFragment : BaseFragment<ViewListPresenter>(), ViewListView {
     }
 
     override fun showProductList(productList: List<Product>) {
-        mAdapter.initWithProducts(productList as MutableList<Product>)
+        mAdapter.initWithProducts(productList)
     }
 
     override fun afterViewInited() {
-//        presenter.loadProductList(arguments.getSerializable(BUNDLE.PRODUCT_LIST) as ProductList)
+        presenter.loadProductList(arguments.getSerializable(BUNDLE.PRODUCT_LIST) as ProductList)
     }
 }

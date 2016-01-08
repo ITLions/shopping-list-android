@@ -7,7 +7,9 @@ import com.itlions.shoppinglist.R
 import com.itlions.shoppinglist.listener.ProductAddedListener
 import com.itlions.shoppinglist.model.Product
 import com.itlions.shoppinglist.presenters.ProductPresenter
-import com.itlions.shoppinglist.ui.adapter.CategoryAdapterAdapter
+import com.itlions.shoppinglist.ui.adapter.ProductAdapter
+import com.itlions.shoppinglist.ui.views.base.BaseFragment
+import com.itlions.shoppinglist.ui.views.base.BaseView
 import kotlin.properties.Delegates
 
 /**
@@ -24,11 +26,11 @@ class CategoryProductsFragment : BaseFragment<ProductPresenter>(), CategoryProdu
     var mFab: FloatingActionButton by Delegates.notNull<FloatingActionButton>()
     var mCategoriesView: RecyclerView by Delegates.notNull<RecyclerView>()
     val mAdapter by lazy {
-        CategoryAdapterAdapter(activity)
+        ProductAdapter(activity)
     }
 
     override fun showProducts(list: List<Product>) {
-        (mCategoriesView.adapter as CategoryAdapterAdapter).initWithProduct(list)
+        (mCategoriesView.adapter as ProductAdapter).initWithProducts(list)
     }
 
     override fun afterViewInited() {

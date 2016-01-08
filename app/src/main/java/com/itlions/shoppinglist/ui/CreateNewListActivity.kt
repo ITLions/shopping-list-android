@@ -11,15 +11,15 @@ import com.itlions.shoppinglist.model.Product
 import com.itlions.shoppinglist.navigation.Navigator
 import com.itlions.shoppinglist.ui.views.CategoryProductsFragment
 import com.itlions.shoppinglist.ui.views.SelectCategoryFragment
-import com.itlions.shoppinglist.ui.views.SelectedtemsView
+import com.itlions.shoppinglist.ui.views.SelectedItemsView
 
 /**
  * TODO implement javadoc
  */
 class CreateNewListActivity : AppCompatActivity(), ProductAddedListener {
 
-    val currentList: SelectedtemsView by lazy {
-        supportFragmentManager.findFragmentById(R.id.fragment_added_products) as SelectedtemsView
+    val currentList: SelectedItemsView by lazy {
+        supportFragmentManager.findFragmentById(R.id.fragment_added_products) as SelectedItemsView
     }
 
     override fun onProductAdded(p: Product) {
@@ -43,5 +43,4 @@ class CreateNewListActivity : AppCompatActivity(), ProductAddedListener {
     fun goInsideCategory() {
         Navigator.showCategoryProductsFragment(this)
     }
-
 }

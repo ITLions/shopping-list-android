@@ -10,6 +10,7 @@ class Table {
             val FIELD_ID = "_id";
             val FIELD_NAME = "name"
             val FIELD_CREATED_DATE = "careated_date"
+            val FIELD_CHECKED = "checked"
         }
     }
 

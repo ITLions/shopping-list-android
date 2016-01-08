@@ -9,6 +9,8 @@ import com.itlions.shoppinglist.model.Category
 import com.itlions.shoppinglist.presenters.SelectCategoryPresenter
 import com.itlions.shoppinglist.ui.CreateNewListActivity
 import com.itlions.shoppinglist.ui.adapter.CategoriesAdapter
+import com.itlions.shoppinglist.ui.views.base.BaseFragment
+import com.itlions.shoppinglist.ui.views.base.BaseView
 import kotlin.properties.Delegates
 
 /**

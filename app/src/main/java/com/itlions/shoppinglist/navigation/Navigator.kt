@@ -42,7 +42,7 @@ public object Navigator {
     fun showProductListFragment(activity: AppCompatActivity, productList: ProductList) {
         var b = Bundle()
         b.putSerializable(ViewListFragment.BUNDLE.PRODUCT_LIST, productList)
-        showFragment(activity, ViewListFragment(), b, false)
+        showFragment(activity, ViewListFragment(), b, true)
     }
 
     fun showCategoryProductsFragment(activity: AppCompatActivity) {

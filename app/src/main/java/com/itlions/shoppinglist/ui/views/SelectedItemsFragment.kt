@@ -7,18 +7,19 @@ import com.itlions.shoppinglist.model.Product
 import com.itlions.shoppinglist.model.SLDataManager
 import com.itlions.shoppinglist.presenters.SelectItemsPresenter
 import com.itlions.shoppinglist.ui.adapter.ProductAdapter
+import com.itlions.shoppinglist.ui.views.base.BaseFragment
+import com.itlions.shoppinglist.ui.views.base.BaseView
 import kotlin.properties.Delegates
 
 /**
  * TODO implement javadoc
  */
-interface SelectedtemsView : BaseView {
-    fun showSelectedItems(list: List<Product>)
+interface SelectedItemsView : BaseView {
     fun addProduct(p: Product)
     fun saveList()
 }
 
-class SelectedItemsFragment : BaseFragment<SelectItemsPresenter>(), SelectedtemsView {
+class SelectedItemsFragment : BaseFragment<SelectItemsPresenter>(), SelectedItemsView {
 
     var mAddedProductsList: RecyclerView by Delegates.notNull<RecyclerView>()
     val mAdapter by lazy {
@@ -36,11 +37,7 @@ class SelectedItemsFragment : BaseFragment<SelectItemsPresenter>(), Selectedtems
     }
 
     override fun afterViewInited() {
-        presenter.loadProductList()
-    }
 
-    override fun showSelectedItems(list: List<Product>) {
-        mAdapter.initWithProducts(list)
     }
 
     override fun addProduct(p: Product) {
@@ -48,7 +45,9 @@ class SelectedItemsFragment : BaseFragment<SelectItemsPresenter>(), Selectedtems
     }
 
     override fun saveList() {
-        SLDataManager.saveProductList(activity, mAdapter.products)
+        if (mAdapter.products.size > 0) {
+            SLDataManager.saveList(activity, mAdapter.products)
+        }
         activity.finish()
     }
 }

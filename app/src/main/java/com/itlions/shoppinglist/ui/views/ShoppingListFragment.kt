@@ -11,6 +11,8 @@ import com.itlions.shoppinglist.model.ProductList
 import com.itlions.shoppinglist.navigation.Navigator
 import com.itlions.shoppinglist.presenters.ShoppingListPresenterImpl
 import com.itlions.shoppinglist.ui.adapter.ShoppingListAdapter
+import com.itlions.shoppinglist.ui.views.base.BaseFragment
+import com.itlions.shoppinglist.ui.views.base.BaseProgressView
 import kotlin.properties.Delegates
 
 /**
@@ -45,6 +47,11 @@ class ShoppingListFragment : BaseFragment<ShoppingListPresenterImpl>(), Shopping
     var progressBar: ProgressBar by Delegates.notNull<ProgressBar>()
 
     override fun afterViewInited() {
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         presenter.loadShoppingLists()
     }
 
